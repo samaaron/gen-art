@@ -1,7 +1,10 @@
 (ns gen-art.perlin-noise-scribble
   (:use [rosado.processing]
         [rosado.processing.applet]
-        [gen-art.util :only [line-join-points range-incl]]))
+        [gen-art.util :only [line-join-points
+                             range-incl
+                             scaled-perlin-noise
+                             mul-add]]))
 
 ;; Listing 3.1, page 59
 ;; ====================
@@ -32,16 +35,6 @@
 ;;  }
 ;; }
 
-(defn scaled-noise
-  [seed]
-  (let [mul 80
-        add 10]
-    (+ add (* mul (noise seed)))))
-
-(defn rand-walk-ys
-  [seed]
-  (lazy-seq (cons (scaled-noise seed) (rand-walk-ys (+ seed 0.1)))))
-
 (defn setup []
   (size 500 100)
   (background 255)
@@ -53,11 +46,15 @@
 
   (stroke 20 50 70)
   (let [step      10
-        y-noise   (rand 10)
+        seed      (rand 10)
+        seed-incr 0.1
+        y-mul     80
+        y-add     10
         border-x  20
         xs        (range-incl border-x (- (width) border-x) step)
-        ys        (rand-walk-ys y-noise)
-        line-args (line-join-points xs ys)]
+        ys        (scaled-perlin-noise seed seed-incr)
+        scaled-ys (mul-add ys y-mul y-add)
+        line-args (line-join-points xs scaled-ys)]
     (dorun (map #(apply line %) line-args))))
 
 (defapplet example
