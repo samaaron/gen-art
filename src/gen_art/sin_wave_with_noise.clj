@@ -1,7 +1,7 @@
 (ns gen-art.sine-wave-with-noise
   (:use [rosado.processing]
         [rosado.processing.applet]
-        [gen-art.util :only [line-join-points mul-add]]))
+        [gen-art.util :only [line-join-points mul-add range-incl]]))
 
 ;; Listing 3.2, page 60
 
@@ -41,7 +41,7 @@
   (line 20 50 480 50)
   (stroke 20 50 70)
 
-  (let [xs        (range 20 480 1)
+  (let [xs        (range-incl 20 480 1)
         rads      (map radians (range))
         ys        (map sin rads)
         ys        (map #(pow % 3) ys)
