@@ -1,4 +1,4 @@
-(ns gen-art.listing-two-one
+(ns gen-art.growing-circle
   (:use [rosado.processing]
         [rosado.processing.applet]))
 

@@ -1,4 +1,4 @@
-(ns gen-art.listing-three-two
+(ns gen-art.sine-wave
   (:use [rosado.processing]
         [rosado.processing.applet]
         [gen-art.util :only [line-join-points]]))

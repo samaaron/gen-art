@@ -1,4 +1,4 @@
-(ns gen-art.two-two-one
+(ns gen-art.cross-with-circle
   (:use [rosado.processing]
         [rosado.processing.applet]))
 

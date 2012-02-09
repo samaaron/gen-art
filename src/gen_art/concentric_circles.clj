@@ -1,7 +1,6 @@
-(ns gen-art.listing-two-three
+(ns gen-art.concentric-circles
   (:use [rosado.processing]
         [rosado.processing.applet]))
-
 
 ;; Listing 2.3
 ;; ===========

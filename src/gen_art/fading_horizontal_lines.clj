@@ -1,4 +1,4 @@
-(ns gen-art.two-four-three
+(ns gen-art.fading-horizontal-lines
   (:use [rosado.processing]
         [rosado.processing.applet]))
 
@@ -18,7 +18,7 @@
 ;; }
 
 (defn draw-line
-  "Draws a horizontal line on the canvas at height h"
+  "Draws a horizontal line on the canvas at height hq"
   [h]
   (stroke 0 (- 255 h))
   (line 10 h (- (width) 20) h)

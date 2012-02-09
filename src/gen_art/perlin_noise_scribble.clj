@@ -1,4 +1,4 @@
-(ns gen-art.listing-three-one
+(ns gen-art.perlin-noise-scribble
   (:use [rosado.processing]
         [rosado.processing.applet]
         [gen-art.util :only [line-join-points range-incl]]))
