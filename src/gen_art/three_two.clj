@@ -1,6 +1,7 @@
 (ns gen-art.three-two
   (:use [rosado.processing]
-        [rosado.processing.applet]))
+        [rosado.processing.applet]
+        [gen-art.util :only [line-join-points range-incl]]))
 
 ;; Example from Section 3.2, page 55
 ;; =================================
@@ -46,15 +47,9 @@
   (let [step      10
         border-x  20
         border-y  10
-        start-y   (rand-y border-y)
-        end-x     (- (width) border-x)
-        end-y     (rand-y border-y)
-        x-mids    (range (+ border-x step) (- end-x step) step)
-        xy-mids   (flatten (map (fn [x] (let [y (rand-y border-y)]
-                                         [x y x y]))
-                                x-mids))
-        xys       (flatten [border-x start-y xy-mids end-x end-y])
-        line-args (partition 4 xys)]
+        xs        (range-incl border-x (- (width) border-x) step)
+        ys        (repeatedly #(rand-y border-y))
+        line-args (line-join-points xs ys)]
     (dorun (map #(apply line %) line-args))))
 
 

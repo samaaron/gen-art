@@ -1,6 +1,7 @@
 (ns gen-art.listing-three-one
   (:use [rosado.processing]
-        [rosado.processing.applet]))
+        [rosado.processing.applet]
+        [gen-art.util :only [line-join-points range-incl]]))
 
 ;; Listing 3.1, page 59
 ;; ====================
@@ -54,15 +55,9 @@
   (let [step      10
         y-noise   (rand 10)
         border-x  20
-        border-y  10
-        start-y   (first (rand-walk-ys y-noise))
-        end-x     (- (width) border-x)
-        x-mids    (range (+ border-x step) (- end-x step) step)
-        xy-mids   (flatten (map (fn [x y]  [x y x y])
-                                x-mids (drop 1 (rand-walk-ys y-noise))))
-        end-y     (first (drop (inc (count x-mids)) (rand-walk-ys y-noise)))
-        xys       (flatten [border-x start-y xy-mids end-x  end-y])
-        line-args (partition 4 xys)]
+        xs        (range-incl border-x (- (width) border-x) step)
+        ys        (rand-walk-ys y-noise)
+        line-args (line-join-points xs ys)]
     (dorun (map #(apply line %) line-args))))
 
 (defapplet example
