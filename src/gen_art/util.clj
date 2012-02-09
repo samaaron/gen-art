@@ -34,4 +34,4 @@
             (recur (+ i step)))
           (chunk-cons (chunk b)
                       (when (comp i end)
-                        (range i end step)))))))))
+                        (range-incl i end step)))))))))
