@@ -11,6 +11,7 @@ Key examples from the book Generative Art by Matt Pearson translated from Proces
 * p55 - Section 3.2, "Random Scribble": `three-two`
 * p56 - Section 3.2(b), "Random Walk Scribble": `three-two-b`
 * p59 - Listing 3.1, "Perlin Noise Scribble": `listing-three-one`
+* p60 - Listing 3.2, "Sine Wave": `listing-three-two`
 
 ## Requirements
 
