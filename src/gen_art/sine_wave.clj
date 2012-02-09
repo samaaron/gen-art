@@ -1,7 +1,7 @@
 (ns gen-art.sine-wave
   (:use [rosado.processing]
         [rosado.processing.applet]
-        [gen-art.util :only [line-join-points]]))
+        [gen-art.util :only [line-join-points mul-add]]))
 
 ;; Listing 3.2, page 60
 
@@ -26,16 +26,15 @@
 ;;  }
 ;; }
 
-(defn incrementing-radians
-  [start degree-increment]
-  (lazy-seq (cons (radians start) (incrementing-radians (+ start degree-increment) degree-increment))))
 
 (defn setup []
   (size 500 100)
   (background 255)
   (let [xs        (range 20 480 1)
-        ys        (map #(+ 50 (* 40 (sin %))) (incrementing-radians 0 1))
-        line-args (line-join-points xs ys)]
+        rads      (map radians (range))
+        ys        (map sin rads)
+        scaled-ys (mul-add ys 40 50)
+        line-args (line-join-points xs scaled-ys)]
     (dorun (map #(apply line %) line-args))))
 
 (defapplet example
