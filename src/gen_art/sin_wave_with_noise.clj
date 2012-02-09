@@ -8,6 +8,11 @@
 ;; void setup() {
 ;;  size(500, 100);
 ;;  background(255);
+;;  strokeWeight(5);
+;;  smooth();
+;;  stroke(0, 30);
+;;  line(20, 50, 480, 50);
+;;  stroke(20, 50, 70);
 
 ;;  float xstep = 1;
 ;;  float lastx = -999;
@@ -30,6 +35,12 @@
 (defn setup []
   (size 500 100)
   (background 255)
+  (stroke-weight 5)
+  (smooth)
+  (stroke 0 30)
+  (line 20 50 480 50)
+  (stroke 20 50 70)
+
   (let [xs        (range 20 480 1)
         rads      (map radians (range))
         ys        (map sin rads)
