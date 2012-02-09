@@ -4,14 +4,14 @@ Key examples from the book Generative Art by Matt Pearson translated from Proces
 
 ## Examples:
 
-* p20 - Section 2.2.1, "Cross with Circle": `two-two-one`
-* p28 - Listing 2.1, "Growing Circle": `listing-two-one`
-* p37 - Listing 2.3, "Concentric circles drawn using traces": `listing-two-three`
-* p39 - Section 2.4.3, "Fading Horizontal Lines": `two-four-three`
-* p55 - Section 3.2, "Random Scribble": `three-two`
-* p56 - Section 3.2(b), "Random Walk Scribble": `three-two-b`
-* p59 - Listing 3.1, "Perlin Noise Scribble": `listing-three-one`
-* p60 - Listing 3.2, "Sine Wave": `listing-three-two`
+* p20 - Section 2.2.1, [Cross with Circle](https://github.com/samaaron/gen-art/blob/master/src/gen_art/cross_with_circle.clj)
+* p28 - Listing 2.1, [Growing Circle](https://github.com/samaaron/gen-art/blob/master/src/gen_art/growing_circle.clj)
+* p37 - Listing 2.3, [Concentric circles drawn using traces](https://github.com/samaaron/gen-art/blob/master/src/gen_art/concentric_circles.clj)
+* p39 - Section 2.4.3, [Fading Horizontal Lines](https://github.com/samaaron/gen-art/blob/master/src/gen_art/fading_horizontal_lines.clj)
+* p55 - Section 3.2, [Random Scribble](https://github.com/samaaron/gen-art/blob/master/src/gen_art/random_scribble.clj)
+* p56 - Section 3.2(b), [Random Walk Scribble](https://github.com/samaaron/gen-art/blob/master/src/gen_art/rand_walk_scribble.clj)
+* p59 - Listing 3.1, [Perlin Noise Scribble](https://github.com/samaaron/gen-art/blob/master/src/gen_art/perlin_noise_scribble.clj)
+* p60 - Listing 3.2, [Sine Wave](https://github.com/samaaron/gen-art/blob/master/src/gen_art/sine_wave.clj)
 
 ## Requirements
 
