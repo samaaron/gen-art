@@ -14,6 +14,7 @@ Key examples from the book Generative Art by Matt Pearson translated from Proces
 * p60 - Listing 3.2, [Sine Wave](https://github.com/samaaron/gen-art/blob/master/src/gen_art/sine_wave.clj)
 * p63 - Section 3.3.2, [Sine Wave with Noise](https://github.com/samaaron/gen-art/blob/master/src/gen_art/sine_wave_with_noise.clj)
 * p63 - Section 3.3.3, [Custom Random Function](https://github.com/samaaron/gen-art/blob/master/src/gen_art/custom_rand.clj)
+* p68 - Listing 4.1, [Dotted Circle](https://github.com/samaaron/gen-art/blob/master/src/gen_art/dotted_circle.clj)
 
 ## Requirements
 
