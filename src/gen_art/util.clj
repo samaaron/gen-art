@@ -2,17 +2,23 @@
   (:use [rosado.processing]))
 
 (defn line-join-points
-  "takes two lists (possibly infinite lazy seqs) of x and y coords and
-  creates a lazy list of line args (vectors of 4 elements) suitable
-  for use with the line fn.
+  "takes either a seq of interleaved x y point coords or two separate
+  lists of x and y coords independently and creates a lazy list of
+  line args (vectors of 4 elements) suitable for use with the line fn.
 
-   (join-points [1 2 3] [4 5 6]) ;=> ([1 4 2 5] [2 5 3 6])"
-  [xs ys]
-  (lazy-seq
-   (if (and (next xs) (next ys))
-     (cons [(first xs) (first ys) (second xs) (second ys)]
-           (join-points (next xs) (next ys)))
-     [])))
+   (line-join-points [1 2 3] [4 5 6])     ;=> ([1 4 2 5] [2 5 3 6])
+   (line-join-points [[1 4] [2 5] [3 6]]) ;=> ([1 4 2 5] [2 5 3 6])"
+  ([interleaved-points]
+     (lazy-seq
+      (let [head (take 2 interleaved-points)]
+        (if (= 2 (count head))
+          (cons (apply concat head) (line-join-points (drop 1 interleaved-points)))))))
+  ([xs ys]
+     (lazy-seq
+      (if (and (next xs) (next ys))
+        (cons [(first xs) (first ys) (second xs) (second ys)]
+              (line-join-points (next xs) (next ys)))
+        []))))
 
 (defn scaled-perlin-noise
   "Generate a lazy infinite sequence of perlin noise values starting from
