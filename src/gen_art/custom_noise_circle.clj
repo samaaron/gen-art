@@ -49,6 +49,11 @@
 (defn custom-noise [val]
   (pow (sin val) 3))
 
+(comment ;;alternative noise fn to generate Figure 4.8
+  (defn custom-noise [val]
+    (let [count (int (mod val 12))]
+       (pow (sin val) count))))
+
 (defn setup []
   (size 500 300)
   (background 255)
