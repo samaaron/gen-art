@@ -16,6 +16,7 @@ Key examples from the book Generative Art by Matt Pearson translated from Proces
 * p63 - Section 3.3.3, [Custom Random Function](https://github.com/samaaron/gen-art/blob/master/src/gen_art/custom_rand.clj)
 * p68 - Listing 4.1, [Dotted Circle](https://github.com/samaaron/gen-art/blob/master/src/gen_art/dotted_circle.clj)
 * p69 - Listing 4.2, [Spiral](https://github.com/samaaron/gen-art/blob/master/src/gen_art/spiral.clj)
+* p69 - Listing 4.3, [Noisy Spiral](https://github.com/samaaron/gen-art/blob/master/src/gen_art/noisy_spiral.clj)
 
 ## Requirements
 
