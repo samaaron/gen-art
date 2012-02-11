@@ -4,21 +4,21 @@ Key examples from the book Generative Art by Matt Pearson translated from Proces
 
 ## Examples:
 
-* p20 - Section 2.2.1, [Cross with Circle](https://github.com/samaaron/gen-art/blob/master/src/gen_art/cross_with_circle.clj)
-* p28 - Listing 2.1, [Growing Circle](https://github.com/samaaron/gen-art/blob/master/src/gen_art/growing_circle.clj)
-* p37 - Listing 2.3, [Concentric circles drawn using traces](https://github.com/samaaron/gen-art/blob/master/src/gen_art/concentric_circles.clj)
-* p39 - Section 2.4.3, [Fading Horizontal Lines](https://github.com/samaaron/gen-art/blob/master/src/gen_art/fading_horizontal_lines.clj)
-* p55 - Section 3.2, [Random Scribble](https://github.com/samaaron/gen-art/blob/master/src/gen_art/random_scribble.clj)
-* p56 - Section 3.2(b), [Random Walk Scribble](https://github.com/samaaron/gen-art/blob/master/src/gen_art/rand_walk_scribble.clj)
-* p59 - Listing 3.1, [Perlin Noise Scribble](https://github.com/samaaron/gen-art/blob/master/src/gen_art/perlin_noise_scribble.clj)
-* p60 - Listing 3.2, [Sine Wave](https://github.com/samaaron/gen-art/blob/master/src/gen_art/sine_wave.clj)
-* p63 - Section 3.3.2, [Sine Wave with Noise](https://github.com/samaaron/gen-art/blob/master/src/gen_art/sine_wave_with_noise.clj)
-* p63 - Section 3.3.3, [Custom Random Function](https://github.com/samaaron/gen-art/blob/master/src/gen_art/custom_rand.clj)
-* p68 - Listing 4.1, [Dotted Circle](https://github.com/samaaron/gen-art/blob/master/src/gen_art/dotted_circle.clj)
-* p69 - Listing 4.2, [Spiral](https://github.com/samaaron/gen-art/blob/master/src/gen_art/spiral.clj)
-* p69 - Listing 4.3, [Noisy Spiral](https://github.com/samaaron/gen-art/blob/master/src/gen_art/noisy_spiral.clj)
-* p71 - Listing 4.4, [100 Noisy Spirals](https://github.com/samaaron/gen-art/blob/master/src/gen_art/hundred_noisy_spirals.clj)
-* p73 - Listing 4.5, [Custom Noise Circle](https://github.com/samaaron/gen-art/blob/master/src/gen_art/custom_noise_circle.clj)
+1. p20 - Section 2.2.1, [Cross with Circle](https://github.com/samaaron/gen-art/blob/master/src/gen_art/cross_with_circle.clj)
+2. p28 - Listing 2.1, [Growing Circle](https://github.com/samaaron/gen-art/blob/master/src/gen_art/growing_circle.clj)
+3. p37 - Listing 2.3, [Concentric circles drawn using traces](https://github.com/samaaron/gen-art/blob/master/src/gen_art/concentric_circles.clj)
+4. p39 - Section 2.4.3, [Fading Horizontal Lines](https://github.com/samaaron/gen-art/blob/master/src/gen_art/fading_horizontal_lines.clj)
+5. p55 - Section 3.2, [Random Scribble](https://github.com/samaaron/gen-art/blob/master/src/gen_art/random_scribble.clj)
+6. p56 - Section 3.2(b), [Random Walk Scribble](https://github.com/samaaron/gen-art/blob/master/src/gen_art/rand_walk_scribble.clj)
+7. p59 - Listing 3.1, [Perlin Noise Scribble](https://github.com/samaaron/gen-art/blob/master/src/gen_art/perlin_noise_scribble.clj)
+8. p60 - Listing 3.2, [Sine Wave](https://github.com/samaaron/gen-art/blob/master/src/gen_art/sine_wave.clj)
+9. p63 - Section 3.3.2, [Sine Wave with Noise](https://github.com/samaaron/gen-art/blob/master/src/gen_art/sine_wave_with_noise.clj)
+10. p63 - Section 3.3.3, [Custom Random Function](https://github.com/samaaron/gen-art/blob/master/src/gen_art/custom_rand.clj)
+11. p68 - Listing 4.1, [Dotted Circle](https://github.com/samaaron/gen-art/blob/master/src/gen_art/dotted_circle.clj)
+12. p69 - Listing 4.2, [Spiral](https://github.com/samaaron/gen-art/blob/master/src/gen_art/spiral.clj)
+13. p69 - Listing 4.3, [Noisy Spiral](https://github.com/samaaron/gen-art/blob/master/src/gen_art/noisy_spiral.clj)
+14. p71 - Listing 4.4, [100 Noisy Spirals](https://github.com/samaaron/gen-art/blob/master/src/gen_art/hundred_noisy_spirals.clj)
+15. p73 - Listing 4.5, [Custom Noise Circle](https://github.com/samaaron/gen-art/blob/master/src/gen_art/custom_noise_circle.clj)
 
 
 ## Requirements
