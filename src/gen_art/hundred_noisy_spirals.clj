@@ -1,4 +1,4 @@
-(ns gen-art.hundred-noisy-spirals.clj
+(ns gen-art.hundred-noisy-spirals
     (:use [rosado.processing]
           [rosado.processing.applet]
           [gen-art.util :only [range-incl line-join-points]]))
