@@ -46,13 +46,13 @@
   (let [radius    100
         cent-x    250
         cent-y    150
-        radius-n  (range (rand 10) Float/POSITIVE_INFINITY 0.05)
-        radius-n  (map #(* 200 (noise %)) radius-n)
-        radians   (map radians (range-incl 0 1440 5))
+        rad-noise (range (rand 10) Float/POSITIVE_INFINITY 0.05)
+        rad-noise (map #(* 200 (noise %)) rad-noise)
+        rads      (map radians (range-incl 0 1440 5))
         radii     (range 10 Float/POSITIVE_INFINITY 0.5)
-        radii     (map (fn [rad noise] (+ rad noise -100)) radii radius-n)
-        xs        (map (fn [radians radius] (+ cent-x (* radius (cos radians)))) radians radii)
-        ys        (map (fn [radians radius] (+ cent-y (* radius (sin radians)))) radians radii)
+        radii     (map (fn [rad noise] (+ rad noise -100)) radii rad-noise)
+        xs        (map (fn [rad radius] (+ cent-x (* radius (cos rad)))) rads radii)
+        ys        (map (fn [rad radius] (+ cent-y (* radius (sin rad)))) rads radii)
         line-args (line-join-points xs ys)]
     (stroke 0 30)
     (no-fill)
