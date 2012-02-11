@@ -17,7 +17,9 @@ Key examples from the book Generative Art by Matt Pearson translated from Proces
 * p68 - Listing 4.1, [Dotted Circle](https://github.com/samaaron/gen-art/blob/master/src/gen_art/dotted_circle.clj)
 * p69 - Listing 4.2, [Spiral](https://github.com/samaaron/gen-art/blob/master/src/gen_art/spiral.clj)
 * p69 - Listing 4.3, [Noisy Spiral](https://github.com/samaaron/gen-art/blob/master/src/gen_art/noisy_spiral.clj)
-* p71 - Listing 4.3, [100 Noisy Spirals](https://github.com/samaaron/gen-art/blob/master/src/gen_art/hundred_noisy_spirals.clj)
+* p71 - Listing 4.4, [100 Noisy Spirals](https://github.com/samaaron/gen-art/blob/master/src/gen_art/hundred_noisy_spirals.clj)
+* p73 - Listing 4.5, [Custom Noise Circle](https://github.com/samaaron/gen-art/blob/master/src/gen_art/custom_noise_circle.clj)
+
 
 ## Requirements
 
