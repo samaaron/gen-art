@@ -36,17 +36,17 @@
   (smooth)
   (no-fill)
   (stroke 20 50 70)
-  (let [radius 130
-        cent-x 250
-        cent-y 150
-        angles (range-incl 0 360)
-        rads (map radians angles)
+  (let [radius   130
+        cent-x   250
+        cent-y   150
+        angles   (range-incl 0 360)
+        rads     (map radians angles)
         opp-rads (map + rads (repeat PI))
 
-        x1s (map #(+ cent-x (* radius (cos %))) rads)
-        y1s (map #(+ cent-y (* radius (sin %))) rads)
-        x2s (map #(+ cent-x (* radius (cos %))) opp-rads)
-        y2s (map #(+ cent-y (* radius (sin %))) opp-rads)]
+        x1s      (map #(+ cent-x (* radius (cos %))) rads)
+        y1s      (map #(+ cent-y (* radius (sin %))) rads)
+        x2s      (map #(+ cent-x (* radius (cos %))) opp-rads)
+        y2s      (map #(+ cent-y (* radius (sin %))) opp-rads)]
     (doall (map line x1s y1s x2s y2s))))
 
 
