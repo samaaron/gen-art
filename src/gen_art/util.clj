@@ -34,11 +34,14 @@
 
 (defn range-incl
   "Returns a lazy seq of nums from start (inclusive) to end
-  (inclusive), by step, where start defaults to 0, step to 1, and end
-  to infinity."
-  ([] (range 0 Double/POSITIVE_INFINITY 1))
-  ([end] (range 0 end 1))
-  ([start end] (range start end 1))
+  (inclusive), by step, where start defaults to 0, end to infinity and
+  step to 1 or -1 depending on whether end is greater than or less
+  than start respectively."
+  ([] (range 0 Double/POSITIVE_INFINITY))
+  ([end] (range 0 end))
+  ([start end] (if (< start end)
+                 (range start end 1)
+                 (range start end -1)))
   ([start end step]
    (lazy-seq
     (let [b (chunk-buffer 32)
@@ -52,3 +55,62 @@
           (chunk-cons (chunk b)
                       (when (comp i end)
                         (range-incl i end step)))))))))
+
+(defn steps
+  "Returns an infinite lazy sequence of numbers starting at
+  start (default 0) with successive additions of step."
+  ([] (steps 1))
+  ([step] (steps 0 step))
+  ([start step]
+     (let [[step next-step] (if (seq? step)
+                              [(first step) (rest step)]
+                              [step step])]
+       (lazy-seq (cons start (steps (+ step start) next-step))))))
+
+
+(defn cycle-between
+  "Cycle between min and max with inc-step and dec-step starting at
+  start in direction :up"
+  ([min max] (cycle-between min min max 1 1))
+  ([min max inc-step] (cycle-between min min max inc-step inc-step))
+  ([min max inc-step dec-step] (cycle-between min min max inc-step dec-step))
+  ([start min max inc-step dec-step] (cycle-between start min max inc-step dec-step :up))
+  ([start min max inc-step dec-step direction]
+     (let [inc-step (if (neg? inc-step) (* -1 inc-step) inc-step)
+           dec-step (if (neg? dec-step) (* -1 dec-step) dec-step)
+           next (if (= :up direction)
+                  (+ start inc-step)
+                  (- start dec-step))
+           [next dir] (if (= :up direction)
+                        (if (> next max) [(- start dec-step) :down] [next :up])
+                        (if (< next min) [(+ start inc-step) :up] [next :down]))]
+       (lazy-seq (cons start (cycle-between next min max inc-step dec-step dir))))))
+
+(defn tap
+  "Debug tool for lazy sequences. Apply to a lazy-seq to print out
+current value when each element of the sequence is evaluated."
+  ([s] (tap "-->" s))
+  ([msg s]
+     (map #(do (println (str msg " " %)) %) s)))
+
+
+(defn- swap-returning-prev!
+  "Similar to swap! except returns vector containing the previous and new values
+
+  (def a (atom 0))
+  (swap-returning-prev! a inc) ;=> [0 1]"
+  [atom f & args]
+  (loop []
+    (let [old-val  @atom
+          new-val  (apply f (cons old-val args))
+          success? (compare-and-set! atom old-val new-val)]
+      (if success?
+        [old-val new-val]
+        (recur)))))
+
+(defn seq->stream
+  [s]
+  (let [state (atom (seq s))]
+    (fn []
+      (let [[old new] (swap-returning-prev! state rest)]
+        (first old)))))

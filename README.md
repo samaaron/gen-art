@@ -22,6 +22,7 @@ Key examples from the book Generative Art by Matt Pearson translated from Proces
 16. [Circle from Opposing Lines](https://github.com/samaaron/gen-art/blob/master/src/gen_art/circle_from_opposing_lines.clj) (p76 - Section 4.2)
 17. [Circle from Fading Opposing Lines](https://github.com/samaaron/gen-art/blob/master/src/gen_art/circle_from_fading_opposing_lines.clj) (p79 - Section 4.2 - Figure 4.12)
 18. [Warped Circle from Fading Opposing Lines](https://github.com/samaaron/gen-art/blob/master/src/gen_art/warped_circle_from_fading_opposing_lines.clj) (p79 - Section 4.2 - Figure 4.13)
+20. [Wave Clock](https://github.com/samaaron/gen-art/blob/master/src/gen_art/wave_clock.clj) (p79 - Listing 4.6)
 
 
 ## Requirements
