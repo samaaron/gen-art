@@ -1,7 +1,7 @@
 (ns gen-art.wave-clock
   (:use [rosado.processing]
         [rosado.processing.applet]
-        [gen-art.util :only [steps mul-add cycle-between]]))
+        [gen-art.util :only [steps mul-add cycle-between seq->stream]]))
 
 ;; Listing 4.6, p79
 
