@@ -21,6 +21,7 @@ Key examples from the book Generative Art by Matt Pearson translated from Proces
 15. [Custom Noise Circle](https://github.com/samaaron/gen-art/blob/master/src/gen_art/custom_noise_circle.clj) (p73 - Listing 4.5)
 16. [Circle from Opposing Lines](https://github.com/samaaron/gen-art/blob/master/src/gen_art/circle_from_opposing_lines.clj) (p76 - Secion 4.2)
 17. [Circle from Fading Opposing Lines](https://github.com/samaaron/gen-art/blob/master/src/gen_art/circle_from_fading_opposing_lines.clj) (p79 - Secion 4.2 - Figure 4.12)
+18. [Warped Circle from Fading Opposing Lines](https://github.com/samaaron/gen-art/blob/master/src/gen_art/warped_circle_from_fading_opposing_lines.clj) (p79 - Secion 4.2 - Figure 4.13)
 
 
 ## Requirements
