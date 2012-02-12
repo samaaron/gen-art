@@ -50,7 +50,7 @@
 
   (let [xs        (range-incl 20 480 1)
         ys        (repeatedly custom-rand)
-        scaled-ys (mul-add ys 20 60)
+        scaled-ys (mul-add 20 60 ys)
         line-args (line-join-points xs scaled-ys)]
     (dorun (map #(apply line %) line-args))))
 

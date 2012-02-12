@@ -53,7 +53,7 @@
         border-x  20
         xs        (range-incl border-x (- (width) border-x) step)
         ys        (scaled-perlin-noise seed seed-incr)
-        scaled-ys (mul-add ys y-mul y-add)
+        scaled-ys (mul-add y-mul y-add ys)
         line-args (line-join-points xs scaled-ys)]
     (dorun (map #(apply line %) line-args))))
 

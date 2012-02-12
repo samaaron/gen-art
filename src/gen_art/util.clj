@@ -29,7 +29,7 @@
 (defn mul-add
   "Generate a lazy sequence of values from seq s which mulplies each
   val in s by mul and then adds add."
-  [s mul add]
+  [mul add s]
   (map #(+ add (* mul %)) (seq s)))
 
 (defn range-incl
