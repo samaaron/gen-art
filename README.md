@@ -26,6 +26,7 @@ Key examples from the book Generative Art by Matt Pearson translated from Proces
 20. [2D Noise Grid](https://github.com/samaaron/gen-art/blob/master/src/gen_art/noise_grid.clj) (p84 - Listing 5.1)
 21. [Squared 2D Noise Grid](https://github.com/samaaron/gen-art/blob/master/src/gen_art/squared_noise_grid.clj) (p86 - Listing 5.2)
 22. [Rotating Lines 2D Noise Grid](https://github.com/samaaron/gen-art/blob/master/src/gen_art/rotating_lines_noise_grid.clj) (p86 - Section 5.12 - Figure 5.3)
+23. [Fluffy Clouds 2D Noise Grid](https://github.com/samaaron/gen-art/blob/master/src/gen_art/fluffy_clouds_noise_grid.clj) (p88 - Section 5.12 - Figure 5.4)
 
 
 ## Requirements
