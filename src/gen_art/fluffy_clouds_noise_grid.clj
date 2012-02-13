@@ -10,7 +10,7 @@
 ;; void setup() {
 ;;   size(300, 300);
 ;;   smooth();
-;;   background(255);
+;;   background(0);
 ;;   xstart = random(10);
 ;;   xnoise = xstart;
 ;;   ynoise = random(10);
@@ -36,7 +36,6 @@
 ;;   ellipse(0,0, edgeSize, edgeSize/2);
 ;;   popMatrix();
 ;; }
-
 
 (defn draw-point
   [x y noise-factor]
@@ -64,7 +63,7 @@
 (defn setup []
   (size 300 300)
   (smooth)
-  (background 255)
+  (background 0)
   (draw-squares (random 10) (random 10)))
 
 (defapplet example
