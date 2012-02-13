@@ -114,7 +114,7 @@
 
 (defn tap
   "Debug tool for lazy sequences. Apply to a lazy-seq to print out
-current value when each element of the sequence is evaluated."
+  current value when each element of the sequence is evaluated."
   ([s] (tap "-->" s))
   ([msg s]
      (map #(do (println (str msg " " %)) %) s)))
@@ -135,8 +135,31 @@ current value when each element of the sequence is evaluated."
         (recur)))))
 
 (defn seq->stream
+  "Converts a sequence to a stream - a stateful function which returns
+  each subequent element each time it is called
+
+  (def s (seq->stream [1 2 3]))
+  (s) ;=> 1
+  (s) ;=> 2
+  (s) ;=> 3
+  (s) ;=> nil"
   [s]
   (let [state (atom (seq s))]
     (fn []
       (let [[old new] (swap-returning-prev! state rest)]
         (first old)))))
+
+(defn tally
+  "Takes a sequence of numbers and returns a new sequence which is a
+  running tally of the successive additions of each element in the
+  original seq.
+
+  (take 5 (tally (range))) ;=> [0 1 3 6 10]"
+  ([s] (tally s 0))
+  ([s amount]
+     (lazy-seq
+      (let [nxt-amount (+ (first s) amount)
+            nxt-s (next s)]
+        (cons nxt-amount (if nxt-s
+                           (tally nxt-s nxt-amount)
+                           []))))))
