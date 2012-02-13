@@ -64,8 +64,8 @@
   ([] (range 0 Double/POSITIVE_INFINITY))
   ([end] (range 0 end))
   ([start end] (if (< start end)
-                 (range start end 1)
-                 (range start end -1)))
+                 (range-incl start end 1)
+                 (range-incl start end -1)))
   ([start end step]
    (lazy-seq
     (let [b (chunk-buffer 32)
