@@ -24,6 +24,7 @@ Key examples from the book Generative Art by Matt Pearson translated from Proces
 18. [Warped Circle from Fading Opposing Lines](https://github.com/samaaron/gen-art/blob/master/src/gen_art/warped_circle_from_fading_opposing_lines.clj) (p79 - Section 4.2 - Figure 4.13)
 20. [Wave Clock](https://github.com/samaaron/gen-art/blob/master/src/gen_art/wave_clock.clj) (p79 - Listing 4.6)
 20. [2D Noise Grid](https://github.com/samaaron/gen-art/blob/master/src/gen_art/noise_grid.clj) (p84 - Listing 5.1)
+21. [Squared 2D Noise Grid](https://github.com/samaaron/gen-art/blob/master/src/gen_art/squared_noise_grid.clj) (p86 - Listing 5.2)
 
 
 ## Requirements
