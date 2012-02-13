@@ -1,6 +1,7 @@
 (ns gen-art.growing-circle
   (:use [rosado.processing]
-        [rosado.processing.applet]))
+        [rosado.processing.applet]
+        [gen-art.util :only [seq->stream range-incl]]))
 
 
 ;; Listing 2.1
@@ -39,18 +40,17 @@
   (stroke 0)
   (stroke-weight 5)
   (fill 255 25)
-  (set-state! :diam (atom 10)
-              :cent-x (/ (width) 2)
-              :cent-y (/ (height) 2)))
+  (let [diams (range-incl 10 400 5)]
+    (set-state! :diam (seq->stream diams)
+                :cent-x (/ (width) 2)
+                :cent-y (/ (height) 2))))
 
 (defn draw []
   (let [cent-x (state :cent-x)
         cent-y (state :cent-y)
-        diam   (state :diam)]
-    (when (<= @diam 400)
-      (background 180)
-      (ellipse cent-x cent-y @diam @diam)
-      (swap! diam + 5))))
+        diam   ((state :diam))]
+    (background 180)
+    (ellipse cent-x cent-y diam diam)))
 
 (defapplet example
   :title "Growing circle"
