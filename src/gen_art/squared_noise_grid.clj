@@ -1,7 +1,7 @@
 (ns gen-art.squared-noise-grid
-    (:use [rosado.processing]
-          [rosado.processing.applet]
-          [gen-art.util :only [range-incl mul-add]]))
+  (:use [rosado.processing]
+        [rosado.processing.applet]
+        [gen-art.util :only [range-incl mul-add]]))
 
 ;; Listing 5.2, p86
 
