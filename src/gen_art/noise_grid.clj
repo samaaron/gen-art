@@ -31,12 +31,11 @@
   (dorun
    (for [y (range-incl (height))
          x (range-incl (width))]
-     (do
-       (let [x-noise (* x 0.01)
-             y-noise (* y 0.01)
-             alph    (* 255 (noise x-noise y-noise))]
-         (stroke-int 0 alph)
-         (line x y (inc x) (inc y)))))))
+     (let [x-noise (* x 0.01)
+           y-noise (* y 0.01)
+           alph    (* 255 (noise x-noise y-noise))]
+       (stroke-int 0 alph)
+       (line x y (inc x) (inc y))))))
 
 (defapplet example
   :title "2D Noise Grid"
