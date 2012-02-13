@@ -150,9 +150,9 @@
         (first old)))))
 
 (defn tally
-  "Takes a sequence of numbers and returns a new sequence which is a
-  running tally of the successive additions of each element in the
-  original seq.
+  "Cumulative tally. Takes a sequence of numbers and returns a new
+  sequence which is a cumulative tally of the successive additions of
+  each element in the original seq.
 
   (take 5 (tally (range))) ;=> [0 1 3 6 10]"
   ([s] (tally s 0))
