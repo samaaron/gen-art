@@ -28,9 +28,20 @@
 
 (defn mul-add
   "Generate a lazy sequence of values from seq s which mulplies each
-  val in s by mul and then adds add."
+  val in s by mul and then adds add. mul and add may also be seqs."
   [mul add s]
-  (map #(+ add (* mul %)) (seq s)))
+  (let [[mul nxt-mul] (if (sequential? mul)
+                        [(first mul) (next mul)]
+                        [mul mul])
+        [add nxt-add] (if (sequential? add)
+                        [(first add) (next add)]
+                        [add add])]
+    (lazy-seq
+     (cons (+ add (* mul (first s))) (if (and nxt-mul nxt-add)
+                                       (mul-add nxt-mul nxt-add (next s))
+                                       [])))))
+
+
 
 (defn range-incl
   "Returns a lazy seq of nums from start (inclusive) to end
@@ -62,7 +73,7 @@
   ([] (steps 1))
   ([step] (steps 0 step))
   ([start step]
-     (let [[step next-step] (if (seq? step)
+     (let [[step next-step] (if (sequential? step)
                               [(first step) (rest step)]
                               [step step])]
        (lazy-seq (cons start (steps (+ step start) next-step))))))
