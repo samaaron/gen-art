@@ -34,12 +34,12 @@
    of map). If all the seqs passed are infinite lazy seqs, the result
    will also be infinite and lazy..
 
-   (mul-add 2 1 2)           ;=> 5
-   (mul-add 2 1 [2 2])       ;=> [5 5]
-   (mul-add [2 4 6] 1 [2 2]) ;=> [5 9]
-   (mul-add 2 1 (range))     ;=> [1 3 5 7 9 11 13...] ;; infinite seq
-   (mul-add [2 2] 1 (range)) ;=> [1 3]"
-  [mul add s]
+   (mul-add 2 2 1)           ;=> 5
+   (mul-add [2 2] 2 1)       ;=> [5 5]
+   (mul-add [2 2] [2 4 6] 1) ;=> [5 9]
+   (mul-add (range) 2 1)     ;=> [1 3 5 7 9 11 13...] ;; infinite seq
+   (mul-add (range) [2 2] 1) ;=> [1 3]"
+  [s mul add]
   (if (and (number? mul) (number? add) (number? s))
     (+ add (* mul s))
     (let [[mul nxt-mul] (if (sequential? mul)
@@ -53,7 +53,7 @@
                           [s s])]
       (lazy-seq
        (cons (+ add (* mul s)) (if (and nxt-mul nxt-add nxt-s)
-                                 (mul-add nxt-mul nxt-add nxt-s)
+                                 (mul-add  nxt-s nxt-mul nxt-add)
                                  []))))))
 
 (defn range-incl

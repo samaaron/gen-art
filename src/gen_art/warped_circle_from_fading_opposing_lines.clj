@@ -51,7 +51,7 @@
         colours   (cycle (range-incl 255 0 -1))
         rad-noise (range (random 10) Float/POSITIVE_INFINITY 0.005)
         radii     (map noise rad-noise)
-        radii     (mul-add 400 1 radii)
+        radii     (mul-add radii 400 1)
         x1s       (map (fn [radius rad] (+ cent-x (* radius (cos rad)))) radii rads)
         y1s       (map (fn [radius rad] (+ cent-y (* radius (sin rad)))) radii rads)
         x2s       (map (fn [radius rad] (+ cent-x (* radius (cos rad)))) radii opp-rads)

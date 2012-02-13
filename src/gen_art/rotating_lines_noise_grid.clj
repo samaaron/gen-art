@@ -48,8 +48,8 @@
   (dorun
    (for [y (range-incl 0 (height) 5)
          x (range-incl 0 (width) 5)]
-     (let [x-noise (mul-add 0.01 x-start x)
-           y-noise (mul-add 0.01 y-start y)
+     (let [x-noise (mul-add x 0.01 x-start)
+           y-noise (mul-add y 0.01 y-start)
            alph    (* 255 (noise x-noise y-noise))]
        (draw-point x y (noise x-noise y-noise))))))
 

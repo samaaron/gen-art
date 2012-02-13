@@ -46,7 +46,7 @@
         ys        (map sin rads)
         ys        (map #(pow % 3) ys)
         ys        (map (fn [y rad] (* 30 y (noise (* 2 rad)))) ys rads)
-        scaled-ys (mul-add 1 50 ys)
+        scaled-ys (mul-add ys 1 50)
 
         line-args (line-join-points xs scaled-ys)]
     (dorun (map #(apply line %) line-args))))
