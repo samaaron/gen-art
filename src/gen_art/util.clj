@@ -81,16 +81,18 @@
                         (range-incl i end step)))))))))
 
 (defn steps
-  "Returns an infinite lazy sequence of numbers starting at
-  start (default 0) with successive additions of step."
+  "Returns a lazy sequence of numbers starting at
+  start (default 0) with successive additions of step. step may be a
+  sequence of steps to apply."
   ([] (steps 1))
   ([step] (steps 0 step))
   ([start step]
      (let [[step next-step] (if (sequential? step)
-                              [(first step) (rest step)]
+                              [(first step) (next step)]
                               [step step])]
-       (lazy-seq (cons start (steps (+ step start) next-step))))))
-
+       (lazy-seq (cons start (if next-step
+                               (steps (+ step start) next-step)
+                               [(+ step start)]))))))
 
 (defn cycle-between
   "Cycle between min and max with inc-step and dec-step starting at
