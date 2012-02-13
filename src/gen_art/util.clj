@@ -27,21 +27,34 @@
   (lazy-seq (cons (noise seed) (scaled-perlin-noise (+ seed incr) incr))))
 
 (defn mul-add
-  "Generate a lazy sequence of values from seq s which mulplies each
-  val in s by mul and then adds add. mul and add may also be seqs."
+  "Generate a potential lazy sequence of values which is the result of
+   multiplying each s by mul and then adding add. s mul and add may be
+   seqs in which case the result will also be seq with the length
+   being the same as the shortest input seq (similar to the behaviour
+   of map). If all the seqs passed are infinite lazy seqs, the result
+   will also be infinite and lazy..
+
+   (mul-add 2 1 2)           ;=> 5
+   (mul-add 2 1 [2 2])       ;=> [5 5]
+   (mul-add [2 4 6] 1 [2 2]) ;=> [5 9]
+   (mul-add 2 1 (range))     ;=> [1 3 5 7 9 11 13...] ;; infinite seq
+   (mul-add [2 2] 1 (range)) ;=> [1 3]"
   [mul add s]
-  (let [[mul nxt-mul] (if (sequential? mul)
-                        [(first mul) (next mul)]
-                        [mul mul])
-        [add nxt-add] (if (sequential? add)
-                        [(first add) (next add)]
-                        [add add])]
-    (lazy-seq
-     (cons (+ add (* mul (first s))) (if (and nxt-mul nxt-add)
-                                       (mul-add nxt-mul nxt-add (next s))
-                                       [])))))
-
-
+  (if (and (number? mul) (number? add) (number? s))
+    (+ add (* mul s))
+    (let [[mul nxt-mul] (if (sequential? mul)
+                          [(first mul) (next mul)]
+                          [mul mul])
+          [add nxt-add] (if (sequential? add)
+                          [(first add) (next add)]
+                          [add add])
+          [s nxt-s]     (if (sequential? s)
+                          [(first s) (next s)]
+                          [s s])]
+      (lazy-seq
+       (cons (+ add (* mul s)) (if (and nxt-mul nxt-add nxt-s)
+                                 (mul-add nxt-mul nxt-add nxt-s)
+                                 []))))))
 
 (defn range-incl
   "Returns a lazy seq of nums from start (inclusive) to end
