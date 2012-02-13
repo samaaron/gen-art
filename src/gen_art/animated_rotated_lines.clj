@@ -77,10 +77,15 @@
              y-noise (mul-add y-idx 0.1 y-start)]
          (draw-point x y (noise x-noise y-noise)))))))
 
-(defn draw []
-  (background 255)
-  (let [[x-start y-start] ((state :starts-str))]
-    (draw-all-points x-start y-start)))
+(defn starts-seq
+  []
+  (let [noise-steps (steps (random 20) 0.01)
+        noises      (map noise noise-steps)
+        noises      (mul-add noises 0.5 -0.25)
+        noise-tally (tally noises)]
+    (map +
+         (steps (random 10) 0.01)
+         noise-tally)))
 
 (defn setup []
   (size 300 300)
@@ -88,20 +93,15 @@
   (background 255)
   (frame-rate 24)
 
-  (let [x-start-steps (steps (random 10) 0.01)
-        y-start-steps (steps (random 10) 0.01)
-        x-noise-steps (steps (random 20) 0.01)
-        y-noise-steps (steps (random 20) 0.01)
-        x-noises      (map noise x-noise-steps)
-        x-noises      (mul-add x-noises 0.5 -0.25)
-        y-noises      (map noise y-noise-steps)
-        y-noises      (mul-add y-noises 0.5 -0.25)
-        x-noise-tally (tally x-noises)
-        y-noise-tally (tally y-noises)
-        x-starts      (mul-add x-start-steps 1 x-noise-tally)
-        y-starts      (mul-add y-start-steps 1 y-noise-tally)
+  (let [x-starts      (starts-seq)
+        y-starts      (starts-seq)
         starts-str    (seq->stream (map list x-starts y-starts))]
     (set-state! :starts-str starts-str)))
+
+(defn draw []
+  (background 255)
+  (let [[x-start y-start] ((state :starts-str))]
+    (draw-all-points x-start y-start)))
 
 (defapplet example
   :title "Animated Rotated Lines"
