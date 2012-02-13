@@ -1,7 +1,7 @@
 (ns gen-art.noise-grid
     (:use [rosado.processing]
           [rosado.processing.applet]
-          [gen-art.util :only [range-incl]]))
+          [gen-art.util :only [range-incl mul-add]]))
 
 ;; Listing 5.1, p84
 
@@ -29,13 +29,15 @@
   (smooth)
   (background 255)
   (dorun
-   (for [y (range-incl (height))
-         x (range-incl (width))]
-     (let [x-noise (* x 0.01)
-           y-noise (* y 0.01)
-           alph    (* 255 (noise x-noise y-noise))]
-       (stroke-int 0 alph)
-       (line x y (inc x) (inc y))))))
+   (let [x-start (random 10)
+         y-start (random 10)]
+     (for [y (range-incl (height))
+           x (range-incl (width))]
+       (let [x-noise (mul-add 0.01 x-start x)
+             y-noise (mul-add 0.01 y-start y)
+             alph    (* 255 (noise x-noise y-noise))]
+         (stroke-int 0 alph)
+         (line x y (inc x) (inc y)))))))
 
 (defapplet example
   :title "2D Noise Grid"
