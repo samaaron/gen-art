@@ -43,7 +43,7 @@
   (line 0 0 20 0)
   (pop-matrix))
 
-(defn draw-squares
+(defn draw-all-points
   [x-start y-start]
   (dorun
    (for [y (range-incl 0 (height) 5)
@@ -57,7 +57,7 @@
   (size 300 300)
   (smooth)
   (background 255)
-  (draw-squares (random 10) (random 10)))
+  (draw-all-points (random 10) (random 10)))
 
 (defapplet example
   :title "Rotating Lines 2D Noise Grid"
