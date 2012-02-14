@@ -1,7 +1,7 @@
 (ns gen-art.animated-rotated-lines
   (:use [rosado.processing]
         [rosado.processing.applet]
-        [gen-art.util :only [steps seq->stream range-incl mul-add tap tally]]))
+        [gen-art.util :only [steps seq->stream range-incl mul-add tap tally indexed-range-incl]]))
 
 ;; Listing 5.4, p91
 
@@ -65,16 +65,14 @@
   (pop-matrix))
 
 (defn draw-all-points [x-start y-start]
-  (let [step-size 15
-        x-idxs    (range-incl 0 (/ (width) step-size))
-        y-idxs    (range-incl 0 (/ (height) step-size))]
+  (let [step-size 15]
     (dorun
-     (for [x-idx x-idxs
-           y-idx y-idxs]
-       (let [x (* step-size x-idx)
-             y (* step-size y-idx)
-             x-noise (mul-add x-idx 0.1 x-start)
-             y-noise (mul-add y-idx 0.1 y-start)]
+     (for [[x-idx x] (indexed-range-incl 0 (width) step-size)
+           [y-idx y] (indexed-range-incl 0 (height) step-size)]
+       (let [x-noise-shift (* x-idx 0.1)
+             y-noise-shift (* y-idx 0.1)
+             x-noise (+ x-start x-noise-shift)
+             y-noise (+ y-start y-noise-shift)]
          (draw-point x y (noise x-noise y-noise)))))))
 
 (defn starts-seq
