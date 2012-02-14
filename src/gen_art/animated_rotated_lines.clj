@@ -64,16 +64,15 @@
   (line 0 0 20 0)
   (pop-matrix))
 
-(defn draw-all-points [x-start y-start]
-  (let [step-size 15]
-    (dorun
-     (for [[x-idx x] (indexed-range-incl 0 (width) step-size)
-           [y-idx y] (indexed-range-incl 0 (height) step-size)]
-       (let [x-noise-shift (* x-idx 0.1)
-             y-noise-shift (* y-idx 0.1)
-             x-noise (+ x-start x-noise-shift)
-             y-noise (+ y-start y-noise-shift)]
-         (draw-point x y (noise x-noise y-noise)))))))
+(defn draw-all-points [x-start y-start step-size]
+  (dorun
+   (for [[x-idx x] (indexed-range-incl 0 (width) step-size)
+         [y-idx y] (indexed-range-incl 0 (height) step-size)]
+     (let [x-noise-shift (* x-idx 0.1)
+           y-noise-shift (* y-idx 0.1)
+           x-noise (+ x-start x-noise-shift)
+           y-noise (+ y-start y-noise-shift)]
+       (draw-point x y (noise x-noise y-noise))))))
 
 (defn starts-seq
   []
@@ -99,7 +98,7 @@
 (defn draw []
   (background 255)
   (let [[x-start y-start] ((state :starts-str))]
-    (draw-all-points x-start y-start)))
+    (draw-all-points x-start y-start 5)))
 
 (defapplet example
   :title "Animated Rotated Lines"
