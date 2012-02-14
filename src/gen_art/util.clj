@@ -61,8 +61,8 @@
   (inclusive), by step, where start defaults to 0, end to infinity and
   step to 1 or -1 depending on whether end is greater than or less
   than start respectively."
-  ([] (range 0 Double/POSITIVE_INFINITY))
-  ([end] (range 0 end))
+  ([] (range-incl 0 Double/POSITIVE_INFINITY))
+  ([end] (range-incl 0 end))
   ([start end] (if (< start end)
                  (range-incl start end 1)
                  (range-incl start end -1)))
@@ -79,6 +79,29 @@
           (chunk-cons (chunk b)
                       (when (comp i end)
                         (range-incl i end step)))))))))
+
+(defn indexed-range-incl
+  "Returns a sequence of [idx val] pairs over the specified inclusive
+  range"
+  ([] (indexed-range-incl 0 Double/POSITIVE_INFINITY))
+  ([end] (indexed-range-incl 0 end))
+  ([start end]
+     (if (< start end)
+       (indexed-range-incl start end 1)
+       (indexed-range-incl start end -1)))
+  ([start end step]
+     (map list (range-incl start end step) (range))))
+
+(defn indexed-range
+  "Returns a sequence of [idx val] pairs over the specified range"
+  ([] (indexed-range 0 Double/POSITIVE_INFINITY))
+  ([end] (indexed-range 0 end))
+  ([start end]
+     (if (< start end)
+       (indexed-range start end 1)
+       (indexed-range start end -1)))
+  ([start end step]
+     (map list (range start end step) (range))))
 
 (defn steps
   "Returns a lazy sequence of numbers starting at
