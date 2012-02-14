@@ -3,7 +3,7 @@
         [rosado.processing.applet]
         [gen-art.util :only [line-join-points
                              range-incl
-                             scaled-perlin-noise
+                             perlin-noise-seq
                              mul-add]]))
 
 ;; Listing 3.1, page 59
@@ -52,7 +52,7 @@
         y-add     10
         border-x  20
         xs        (range-incl border-x (- (width) border-x) step)
-        ys        (scaled-perlin-noise seed seed-incr)
+        ys        (perlin-noise-seq seed seed-incr)
         scaled-ys (mul-add ys y-mul y-add)
         line-args (line-join-points xs scaled-ys)]
     (dorun (map #(apply line %) line-args))))

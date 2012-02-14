@@ -20,11 +20,11 @@
               (line-join-points (next xs) (next ys)))
         []))))
 
-(defn scaled-perlin-noise
+(defn perlin-noise-seq
   "Generate a lazy infinite sequence of perlin noise values starting from
   the specified seed with incr added to the seed for each successive value."
   [seed incr]
-  (lazy-seq (cons (noise seed) (scaled-perlin-noise (+ seed incr) incr))))
+  (lazy-seq (cons (noise seed) (perlin-noise-seq (+ seed incr) incr))))
 
 (defn mul-add
   "Generate a potential lazy sequence of values which is the result of
@@ -90,7 +90,9 @@
        (indexed-range-incl start end 1)
        (indexed-range-incl start end -1)))
   ([start end step]
-     (map list (range-incl start end step) (range))))
+     (map list (range) (range-incl start end step))))
+
+
 
 (defn indexed-range
   "Returns a sequence of [idx val] pairs over the specified range"
@@ -101,7 +103,7 @@
        (indexed-range start end 1)
        (indexed-range start end -1)))
   ([start end step]
-     (map list (range start end step) (range))))
+     (map list (range) (range start end step))))
 
 (defn steps
   "Returns a lazy sequence of numbers starting at
