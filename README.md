@@ -33,6 +33,7 @@ Key examples from the book Generative Art by Matt Pearson translated from Proces
 27. [2D Noise from a 3D Perspective](https://github.com/samaaron/gen-art/blob/master/src/gen_art/noise_perspective.clj) (p95 - Listing 5.5)
 28. [A Cube of 3D Noise](https://github.com/samaaron/gen-art/blob/master/src/gen_art/cloud_cube.clj) (p97 - Listing 5.6)
 29. [Spiral Sphere](https://github.com/samaaron/gen-art/blob/master/src/gen_art/spiral_sphere.clj) (p100 - Listing 5.7)
+30. [Random Clicked Circles](https://github.com/samaaron/gen-art/blob/master/src/gen_art/random_clicked_circles.clj) (p113 - Listing 6.1)
 
 
 ## Requirements
