@@ -40,7 +40,7 @@
   (stroke 0)
   (stroke-weight 5)
   (fill 255 25)
-  (let [diams (range-incl 10 400 5)]
+  (let [diams (range-incl 10 400 10)]
     (set-state! :diam (seq->stream diams)
                 :cent-x (/ (width) 2)
                 :cent-y (/ (height) 2))))
