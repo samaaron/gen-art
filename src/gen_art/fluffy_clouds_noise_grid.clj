@@ -1,4 +1,4 @@
-(ns gen-art.rotating-lines-noise-grid
+(ns gen-art.fluffy-clouds-noise-grid
   (:use [rosado.processing]
         [rosado.processing.applet]
         [gen-art.util :only [range-incl mul-add]]))

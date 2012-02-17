@@ -1,4 +1,4 @@
-(ns gen-art.sphere
+(ns gen-art.noise-perspective
   (:use [rosado.processing]
         [rosado.processing.applet]
         [gen-art.util :only [mul-add indexed-range-incl steps seq->stream]]))
