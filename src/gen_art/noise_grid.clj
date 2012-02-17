@@ -33,8 +33,8 @@
          y-start (random 10)]
      (for [y (range-incl (height))
            x (range-incl (width))]
-       (let [x-noise (mul-add 0.01 x-start x)
-             y-noise (mul-add 0.01 y-start y)
+       (let [x-noise (mul-add x 0.01 x-start)
+             y-noise (mul-add y 0.01 y-start)
              alph    (* 255 (noise x-noise y-noise))]
          (stroke-int 0 alph)
          (line x y (inc x) (inc y)))))))
