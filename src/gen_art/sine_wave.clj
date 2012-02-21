@@ -1,9 +1,10 @@
 (ns gen-art.sine-wave
-  (:use [rosado.processing]
-        [rosado.processing.applet]
+  (:use [processing.core]
+        [processing.core.applet]
         [gen-art.util :only [line-join-points mul-add range-incl]]))
 
-;; Listing 3.2, page 60
+;; Example 8 - Sine Wave
+;; Taken from Listing 3.2, p60
 
 ;; void setup() {
 ;;  size(500, 100);
@@ -33,7 +34,6 @@
 
 
 (defn setup []
-  (size 500 100)
   (background 255)
   (stroke-weight 5)
   (smooth)
@@ -48,10 +48,7 @@
         line-args (line-join-points xs scaled-ys)]
     (dorun (map #(apply line %) line-args))))
 
-(defapplet example
+(applet
   :title "Sine Wave"
   :setup setup
   :size [500 100])
-
-(run example :interactive)
-;;(stop example)

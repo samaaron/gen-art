@@ -1,11 +1,9 @@
 (ns gen-art.concentric-circles
-  (:use [rosado.processing]
-        [rosado.processing.applet]))
+  (:use [processing.core]
+        [processing.core.applet]))
 
-;; Listing 2.3
-;; ===========
-
-;; Page 37
+;; Example 3 - Concentric circles drawn using traces
+;; Taken from Listing 2.3, p37
 
 ;; int diam = 10;
 ;; float centX, centY;
@@ -30,7 +28,6 @@
 ;; }
 
 (defn setup []
-  (size 500 300)
   (frame-rate 24)
   (smooth)
   (background 180)
@@ -49,11 +46,8 @@
       (ellipse cent-x cent-y @diam @diam)
       (swap! diam + 10))))
 
-(defapplet example
+(applet
   :title "Concentric Circles"
   :setup setup
   :draw draw
   :size [500 300])
-
-(run example :interactive)
-;;(stop example)

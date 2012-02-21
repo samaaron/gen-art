@@ -1,9 +1,9 @@
 (ns gen-art.cross-with-circle
-  (:use [rosado.processing]
-        [rosado.processing.applet]))
+  (:use [processing.core]
+        [processing.core.applet]))
 
-;; Example from Section 2.2.1, page 20
-;; ===================================
+;; Example 1 - Cross with Circle
+;; Taken from Section 2.2.1, p20
 
 ;; size(500, 300);
 ;; smooth();
@@ -18,7 +18,6 @@
 ;; ellipse(width/2, height/2, 50, 50);
 
 (defn setup []
-  (size 500 300)
   (smooth)
   (background 230 230 230)
   (stroke 130, 0 0)
@@ -37,9 +36,7 @@
     (fill 255 150)
     (ellipse canvas-x-center canvas-y-center circ-size circ-size)))
 
-(defapplet ex
+(applet
   :title "Cross with circle"
   :setup setup
   :size [500 300])
-
-(run ex :interactive)

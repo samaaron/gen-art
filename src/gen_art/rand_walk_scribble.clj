@@ -1,10 +1,10 @@
 (ns gen-art.rand-walk-scribble
-  (:use [rosado.processing]
-        [rosado.processing.applet]
+  (:use [processing.core]
+        [processing.core.applet]
         [gen-art.util :only [line-join-points range-incl]]))
 
-;; Example from Section 3.2, page 56
-;; =================================
+;; Example 6 - Random Walk Scribble
+;; Taken from Section 3.2, p56
 
 ;; void setup() {
 ;;   size(500, 100);
@@ -36,7 +36,6 @@
   (lazy-seq (cons seed (rand-walk-ys (+ seed (- (rand 20) 10))))))
 
 (defn setup []
-  (size 500 100)
   (background 255)
   (stroke-weight 5)
   (smooth)
@@ -51,10 +50,7 @@
         line-args (line-join-points xs ys)]
     (dorun (map #(apply line %) line-args))))
 
-(defapplet example
+(applet
   :title "Random Walk Scribble"
   :setup setup
   :size [500 100])
-
-(run example :interactive)
-;;(stop example)

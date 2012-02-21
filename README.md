@@ -1,4 +1,4 @@
-# Generative Art - clj-processing translations
+w# Generative Art - clj-processing translations
 
 Key examples from the book Generative Art by Matt Pearson translated from Processing into clj-processing
 
@@ -22,7 +22,7 @@ Key examples from the book Generative Art by Matt Pearson translated from Proces
 16. [Circle from Opposing Lines](https://github.com/samaaron/gen-art/blob/master/src/gen_art/circle_from_opposing_lines.clj) (p76 - Section 4.2)
 17. [Circle from Fading Opposing Lines](https://github.com/samaaron/gen-art/blob/master/src/gen_art/circle_from_fading_opposing_lines.clj) (p79 - Section 4.2 - Figure 4.12)
 18. [Warped Circle from Fading Opposing Lines](https://github.com/samaaron/gen-art/blob/master/src/gen_art/warped_circle_from_fading_opposing_lines.clj) (p79 - Section 4.2 - Figure 4.13)
-20. [Wave Clock](https://github.com/samaaron/gen-art/blob/master/src/gen_art/wave_clock.clj) (p79 - Listing 4.6)
+19. [Wave Clock](https://github.com/samaaron/gen-art/blob/master/src/gen_art/wave_clock.clj) (p79 - Listing 4.6)
 20. [2D Noise Grid](https://github.com/samaaron/gen-art/blob/master/src/gen_art/noise_grid.clj) (p84 - Listing 5.1)
 21. [Squared 2D Noise Grid](https://github.com/samaaron/gen-art/blob/master/src/gen_art/squared_noise_grid.clj) (p86 - Listing 5.2)
 22. [Rotating Lines 2D Noise Grid](https://github.com/samaaron/gen-art/blob/master/src/gen_art/rotating_lines_noise_grid.clj) (p86 - Section 5.12 - Figure 5.3)

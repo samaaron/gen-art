@@ -1,9 +1,10 @@
 (ns gen-art.squared-noise-grid
-  (:use [rosado.processing]
-        [rosado.processing.applet]
+  (:use [processing.core]
+        [processing.core.applet]
         [gen-art.util :only [range-incl mul-add]]))
 
-;; Listing 5.2, p86
+;; Example 21 - Squared 2D Noise Grid
+;; Taken from Listing 5.2, p86
 
 ;; float xstart, xnoise, ynoise;
 ;;
@@ -45,14 +46,11 @@
        (draw-point x y (noise x-noise y-noise))))))
 
 (defn setup []
-  (size 300 300)
   (smooth)
   (background 255)
   (draw-squares (random 10) (random 10)))
 
-(defapplet example
+(applet
   :title "Squared 2D Noise Grid"
   :setup setup
   :size [300 300])
-
-(run example :interactive)

@@ -1,9 +1,10 @@
 (ns gen-art.rotating-lines-noise-grid
-  (:use [rosado.processing]
-        [rosado.processing.applet]
+  (:use [processing.core]
+        [processing.core.applet]
         [gen-art.util :only [range-incl mul-add]]))
 
-;; Section 5.12 (Figure 5.3) p86
+;; Example 22 - Rotating Lines 2D Noise Grid
+;; Taken from Section 5.12, p86 (Figure 5.3)
 
 ;; float xstart, xnoise, ynoise;
 ;;
@@ -54,14 +55,11 @@
        (draw-point x y (noise x-noise y-noise))))))
 
 (defn setup []
-  (size 300 300)
   (smooth)
   (background 255)
   (draw-all-points (random 10) (random 10)))
 
-(defapplet example
+(applet
   :title "Rotating Lines 2D Noise Grid"
   :setup setup
   :size [300 300])
-
-(run example :interactive)

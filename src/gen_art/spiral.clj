@@ -1,9 +1,10 @@
 (ns gen-art.spiral
-  (:use [rosado.processing]
-        [rosado.processing.applet]
-        [gen-art.util :only [range-incl line-join-points]]))
+  (:use [processing.core]
+        [processing.core.applet]
+        [gen-art.util :only [range-incl line-join-points steps]]))
 
-;; Listing 4.2, page 69
+;; Example 12 - Spiral
+;; Taken from Listing 4.2, p69
 
 ;; void setup() {
 ;;   size(500,300);
@@ -35,7 +36,6 @@
 ;; }
 
 (defn setup []
-  (size 500 300)
   (background 255)
   (stroke-weight 5)
   (smooth)
@@ -43,7 +43,7 @@
         cent-x    250
         cent-y    150
         radians   (map radians (range-incl 0 1440 5))
-        radii     (range 10 Float/POSITIVE_INFINITY 0.5)
+        radii     (steps 10 0.5)
         xs        (map (fn [radians radius] (+ cent-x (* radius (cos radians)))) radians radii)
         ys        (map (fn [radians radius] (+ cent-y (* radius (sin radians)))) radians radii)
         line-args (line-join-points xs ys)]
@@ -53,10 +53,7 @@
     (stroke 20 50 70)
     (dorun (map #(apply line %) line-args))))
 
-(defapplet example
+(applet
   :title "Spiral"
   :setup setup
   :size [500 300])
-
-(run example :interactive)
-;;(stop example)

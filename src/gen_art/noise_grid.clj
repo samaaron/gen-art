@@ -1,9 +1,10 @@
 (ns gen-art.noise-grid
-    (:use [rosado.processing]
-          [rosado.processing.applet]
+    (:use [processing.core]
+          [processing.core.applet]
           [gen-art.util :only [range-incl mul-add]]))
 
-;; Listing 5.1, p84
+;; Example 20 - 2D Noise Grid
+;; Taken from Listing 5.1, p84
 
 ;; void setup() {
 ;;   size(300,300);
@@ -25,7 +26,6 @@
 ;; }
 
 (defn setup []
-  (size 300 300)
   (smooth)
   (background 255)
   (dorun
@@ -39,9 +39,7 @@
          (stroke-int 0 alph)
          (line x y (inc x) (inc y)))))))
 
-(defapplet example
+(applet
   :title "2D Noise Grid"
   :setup setup
   :size [300 300])
-
-(run example :interactive)

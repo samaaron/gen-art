@@ -1,9 +1,10 @@
 (ns gen-art.noisy-spiral
-  (:use [rosado.processing]
-        [rosado.processing.applet]
-        [gen-art.util :only [range-incl line-join-points]]))
+  (:use [processing.core]
+        [processing.core.applet]
+        [gen-art.util :only [range-incl line-join-points steps mul-add]]))
 
-;; Listing 4.3, page 69
+;; Example 13 - Noisy Spiral
+;; Taken from Listing 4.3, p69
 
 ;; void setup() {
 ;;   size(500,300);
@@ -39,20 +40,19 @@
 ;; }
 
 (defn setup []
-  (size 500 300)
   (background 255)
   (stroke-weight 5)
   (smooth)
   (let [radius    100
         cent-x    250
         cent-y    150
-        rad-noise (range (rand 10) Float/POSITIVE_INFINITY 0.05)
+        rad-noise (steps (rand 10) 0.05)
         rad-noise (map #(* 200 (noise %)) rad-noise)
         rads      (map radians (range-incl 0 1440 5))
-        radii     (range 10 Float/POSITIVE_INFINITY 0.5)
+        radii     (steps 10 0.5)
         radii     (map (fn [rad noise] (+ rad noise -100)) radii rad-noise)
-        xs        (map (fn [rad radius] (+ cent-x (* radius (cos rad)))) rads radii)
-        ys        (map (fn [rad radius] (+ cent-y (* radius (sin rad)))) rads radii)
+        xs        (map (fn [rad radius] (mul-add (cos rad) radius cent-x)) rads radii)
+        ys        (map (fn [rad radius] (mul-add (sin rad) radius cent-y)) rads radii)
         line-args (line-join-points xs ys)]
     (stroke 0 30)
     (no-fill)
@@ -60,10 +60,7 @@
     (stroke 20 50 70)
     (dorun (map #(apply line %) line-args))))
 
-(defapplet example
+(applet
   :title "Noisy Spiral"
   :setup setup
   :size [500 300])
-
-(run example :interactive)
-;;(stop example)

@@ -1,5 +1,5 @@
 (ns gen-art.util
-  (:use [rosado.processing]))
+  (:use [processing.core]))
 
 (defn line-join-points
   "takes either a seq of x y (and z) point coords tuples or two
@@ -199,3 +199,17 @@
         (cons nxt-amount (if nxt-s
                            (tally nxt-s nxt-amount)
                            []))))))
+
+(defn mod-range
+  "Similar to mod except allows min to be non-zero. Always returns a
+  val within the range min (inclusive) to max (exclusive). Throws an
+  exception if min is greater than max."
+  [val min max]
+  (when (> min max)
+    (throw (Exception. (str "Error in mod-range: min is greater than max (> " min " " max ")"))))
+  (if (< min 0)
+    (let [abs-min (* -1 min)
+          res (mod val (+ max abs-min))]
+      (- res abs-min))
+    (let [res (mod val (- max min))]
+      (+ res min))))

@@ -1,9 +1,10 @@
 (ns gen-art.custom-noise-circle
-    (:use [rosado.processing]
-          [rosado.processing.applet]
-          [gen-art.util :only [range-incl line-join-points]]))
+    (:use [processing.core]
+          [processing.core.applet]
+          [gen-art.util :only [range-incl line-join-points mul-add]]))
 
-;; Listing 4.5, page 73
+;; Example 15 - Custom Noise Circle
+;; Taken from Listing 4.5, p73
 
 ;; void setup(){
 ;;   size(500, 300);
@@ -55,7 +56,6 @@
        (pow (sin val) count))))
 
 (defn setup []
-  (size 500 300)
   (background 255)
   (stroke-weight 5)
   (smooth)
@@ -71,8 +71,8 @@
         noise-vals (range noise-val Float/POSITIVE_INFINITY 0.1)
         rad-vars   (map #(* 30 (custom-noise %)) noise-vals)
         radii      (map + rad-vars (repeat radius))
-        xs         (map (fn [radius rad] (+ cent-x (* radius (cos rad)))) radii rads)
-        ys         (map (fn [radius rad] (+ cent-y (* radius (sin rad)))) radii rads)]
+        xs         (map (fn [radius rad] (mul-add (cos rad) radius cent-x)) radii rads)
+        ys         (map (fn [radius rad] (mul-add (sin rad) radius cent-y)) radii rads)]
 
     (ellipse cent-x cent-y (* 2 radius) (* 2 radius))
     (stroke 20 50 70)
@@ -82,10 +82,7 @@
     (dorun (map curve-vertex xs ys))
     (end-shape)))
 
-(defapplet example
+(applet
   :title "Custom Noise Circle"
   :setup setup
   :size [500 300])
-
-(run example :interactive)
-;;(stop example)

@@ -1,9 +1,10 @@
 (ns gen-art.dotted-circle
-  (:use [rosado.processing]
-        [rosado.processing.applet]
+  (:use [processing.core]
+        [processing.core.applet]
         [gen-art.util :only [range-incl line-join-points]]))
 
-;; Listing 4.1, page 68
+;; Example 11 - Dotted Circle
+;; Taken from Listing 4.1, p68
 
 ;; void setup() {
 ;;   size(500,300);
@@ -29,7 +30,6 @@
 ;; }
 
 (defn setup []
-  (size 500 300)
   (background 255)
   (stroke-weight 5)
   (smooth)
@@ -45,10 +45,7 @@
     (stroke 20 50 70)
     (dorun (map point xs ys))))
 
-(defapplet example
+(applet
   :title "Dotted Circle"
   :setup setup
   :size [500 300])
-
-(run example :interactive)
-;;(stop example)

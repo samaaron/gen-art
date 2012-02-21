@@ -1,8 +1,9 @@
 (ns gen-art.fading-horizontal-lines
-  (:use [rosado.processing]
-        [rosado.processing.applet]))
+  (:use [processing.core]
+        [processing.core.applet]))
 
-;; Example from Section 2.4.3, page 39
+;; Example 4 - Fading Horizontal Lines
+;; Taken from Section 2.4.3, p 39
 
 ;; void setup() {
 ;;   size(500, 300);
@@ -26,17 +27,13 @@
   (line 10 (+ h 4) (- (width) 20) (+ h 4)))
 
 (defn setup []
-  (size 500 300)
   (background 180)
   (stroke-weight 4)
   (stroke-cap :square)
   (let [line-heights (range 10 (- (height) 15) 10)]
     (dorun (map draw-line line-heights))))
 
-(defapplet example
+(applet
   :title "Fading Horizontal Lines"
   :setup setup
   :size [500 300])
-
-(run example :interactive)
-;;(stop example)

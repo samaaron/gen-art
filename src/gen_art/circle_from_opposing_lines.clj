@@ -1,9 +1,10 @@
 (ns gen-art.circle-from-opposing-lines
-  (:use [rosado.processing]
-        [rosado.processing.applet]
-        [gen-art.util :only [range-incl line-join-points]]))
+  (:use [processing.core]
+        [processing.core.applet]
+        [gen-art.util :only [range-incl line-join-points mul-add]]))
 
-;; Section 4.2, page 76
+;; Example 16 - Circle from Opposing Lines
+;; Taken from Section 4.2, p76
 
 ;; void setup() {
 ;;   size(500,300);
@@ -30,7 +31,6 @@
 ;; }
 
 (defn setup []
-  (size 500 300)
   (background 255)
   (stroke-weight 0.5)
   (smooth)
@@ -42,18 +42,14 @@
         angles   (range-incl 0 360)
         rads     (map radians angles)
         opp-rads (map + rads (repeat PI))
-
-        x1s      (map #(+ cent-x (* radius (cos %))) rads)
-        y1s      (map #(+ cent-y (* radius (sin %))) rads)
-        x2s      (map #(+ cent-x (* radius (cos %))) opp-rads)
-        y2s      (map #(+ cent-y (* radius (sin %))) opp-rads)]
+        x1s      (map #(mul-add (cos %) radius cent-x) rads)
+        y1s      (map #(mul-add (sin %) radius cent-y) rads)
+        x2s      (map #(mul-add (cos %) radius cent-x) opp-rads)
+        y2s      (map #(mul-add (sin %) radius cent-y) opp-rads)]
     (doall (map line x1s y1s x2s y2s))))
 
 
-(defapplet example
+(applet
   :title "Circle from Opposing Lines"
   :setup setup
   :size [500 300])
-
-(run example :interactive)
-;;(stop example)

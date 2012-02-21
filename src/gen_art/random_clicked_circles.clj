@@ -1,8 +1,9 @@
 (ns gen-art.random-clicked-circles
-  (:use [rosado.processing]
-        [rosado.processing.applet]))
+  (:use [processing.core]
+        [processing.core.applet]))
 
-;; Listing 6.1, p113
+;; Example 30 - Random Clicked Circles
+;; Taken from Listing 6.1, p113
 
 ;; int _num = 10;
 
@@ -47,21 +48,17 @@
        (stroke 0 150)
        (ellipse x y 10 10)))))
 
-(defn mouse-released []
-  (draw-circles))
-
 (defn setup []
-  (size 500 300)
   (background 255)
   (smooth)
   (stroke-weight 1)
   (fill 150 50)
   (draw-circles))
 
-(defapplet example
+(applet
   :title "Random Clicked Circles"
   :setup setup
-  :mouse-released mouse-released
+  :mouse-released draw-circles
   :size [500 300])
 
-(run example :interactive)
+;;(run example :interactive)

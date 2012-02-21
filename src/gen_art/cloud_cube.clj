@@ -1,9 +1,10 @@
 (ns gen-art.cloud-cube
-  (:use [rosado.processing]
-        [rosado.processing.applet]
+  (:use [processing.core]
+        [processing.core.applet]
         [gen-art.util :only [indexed-range-incl mul-add]]))
 
-;; Listing 5.6, p97
+;; Example 28 - A Cube of 3D Noise
+;; Taken from Listing 5.6, p97
 
 ;; float xstart, ystart, zstart;
 ;; float xnoise, ynoise, znoise;
@@ -84,28 +85,23 @@
     (translate 150 20 -150)
     (rotate-z rotate-val)
     (rotate-y rotate-val)
-
-    (dorun
-     (for [[x-idx z] (indexed-range-incl 0 side-length spacing)
-           [y-idx y] (indexed-range-incl 0 side-length spacing)
-           [z-idx x] (indexed-range-incl 0 side-length spacing)]
-       (let [x-noise (mul-add x-idx 0.1 (+ noise-shift x-start))
-             y-noise (mul-add y-idx 0.1 (+ noise-shift y-start))
-             z-noise (mul-add z-idx 0.1 (+ noise-shift z-start))]
-         (draw-point x y z (noise x-noise y-noise z-noise)))))))
+    (doseq [[x-idx z] (indexed-range-incl 0 side-length spacing)
+            [y-idx y] (indexed-range-incl 0 side-length spacing)
+            [z-idx x] (indexed-range-incl 0 side-length spacing)]
+      (let [x-noise (mul-add x-idx 0.1 (+ noise-shift x-start))
+            y-noise (mul-add y-idx 0.1 (+ noise-shift y-start))
+            z-noise (mul-add z-idx 0.1 (+ noise-shift z-start))]
+        (draw-point x y z (noise x-noise y-noise z-noise))))))
 
 (defn setup []
-  (size 500 300 P3D)
   (background 0)
   (no-stroke)
   (set-state! :x-start (random 10)
               :y-start (random 10)
               :z-start (random 10)))
 
-(defapplet example
+(applet
   :title "A Cube of 3D Noise"
   :setup setup
   :draw draw
-  :size [500 300])
-
-(run example :interactive)
+  :size [500 300 P3D])

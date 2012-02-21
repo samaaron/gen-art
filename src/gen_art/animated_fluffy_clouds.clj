@@ -1,9 +1,10 @@
 (ns gen-art.animated-fluffy-clouds
-  (:use [rosado.processing]
-        [rosado.processing.applet]
+  (:use [processing.core]
+        [processing.core.applet]
         [gen-art.util :only [steps seq->stream range-incl mul-add tap]]))
 
-;; Listing 5.3, p89
+;; Example 24 - Animated Fluffy Clouds
+;; Taken from Listing 5.3, p89
 
 ;; float xstart, xnoise, ystart, ynoise;
 
@@ -66,14 +67,13 @@
   (let [step-size 5
         x-idxs    (range-incl 0 (/ (width) step-size))
         y-idxs    (range-incl 0 (/ (height) step-size))]
-    (dorun
-     (for [x-idx x-idxs
-           y-idx y-idxs]
-       (let [x (* step-size x-idx)
-             y (* step-size y-idx)
-             x-noise (mul-add x-idx 0.1 x-start)
-             y-noise (mul-add y-idx 0.1 y-start)]
-         (draw-point x y (noise x-noise y-noise)))))))
+    (doseq [x-idx x-idxs
+            y-idx y-idxs]
+      (let [x       (* step-size x-idx)
+            y       (* step-size y-idx)
+            x-noise (mul-add x-idx 0.1 x-start)
+            y-noise (mul-add y-idx 0.1 y-start)]
+        (draw-point x y (noise x-noise y-noise))))))
 
 
 (defn draw []
@@ -83,7 +83,6 @@
     (draw-all-points x-start y-start)))
 
 (defn setup []
-  (size 300 300)
   (smooth)
   (background 0)
   (frame-rate 24)
@@ -95,10 +94,8 @@
 
     (set-state! :starts-str starts-str)))
 
-(defapplet example
+(applet
   :title "Animated Fluffy Clouds"
   :setup setup
   :draw draw
   :size [300 300])
-
-(run example :interactive)

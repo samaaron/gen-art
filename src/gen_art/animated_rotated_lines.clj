@@ -1,9 +1,10 @@
 (ns gen-art.animated-rotated-lines
-  (:use [rosado.processing]
-        [rosado.processing.applet]
+  (:use [processing.core]
+        [processing.core.applet]
         [gen-art.util :only [steps seq->stream range-incl mul-add tap tally indexed-range-incl]]))
 
-;; Listing 5.4, p91
+;; Example 25 - Animated Rotated Lines
+;; Taken from Listing 5.4, p91
 
 ;; float xstart, xnoise, ystart, ynoise;
 ;; float xstartNoise, ystartNoise;
@@ -64,7 +65,8 @@
   (line 0 0 20 0)
   (pop-matrix))
 
-(defn draw-all-points [x-start y-start step-size]
+(defn draw-all-points
+  [x-start y-start step-size]
   (dorun
    (for [[x-idx x] (indexed-range-incl 0 (width) step-size)
          [y-idx y] (indexed-range-incl 0 (height) step-size)]
@@ -74,8 +76,7 @@
            y-noise (+ y-start y-noise-shift)]
        (draw-point x y (noise x-noise y-noise))))))
 
-(defn starts-seq
-  []
+(defn starts-seq []
   (let [noise-steps (steps (random 20) 0.01)
         noises      (map noise noise-steps)
         noises      (mul-add noises 0.5 -0.25)
@@ -85,7 +86,6 @@
          noise-tally)))
 
 (defn setup []
-  (size 300 300)
   (smooth)
   (background 255)
   (frame-rate 24)
@@ -98,12 +98,10 @@
 (defn draw []
   (background 255)
   (let [[x-start y-start] ((state :starts-str))]
-    (draw-all-points x-start y-start 5)))
+    (draw-all-points x-start y-start 3)))
 
-(defapplet example
+(applet
   :title "Animated Rotated Lines"
   :setup setup
   :draw draw
   :size [300 300])
-
-(run example :interactive)

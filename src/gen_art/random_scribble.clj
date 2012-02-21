@@ -1,10 +1,10 @@
 (ns gen-art.random-scribble
-  (:use [rosado.processing]
-        [rosado.processing.applet]
+  (:use [processing.core]
+        [processing.core.applet]
         [gen-art.util :only [line-join-points range-incl]]))
 
-;; Example from Section 3.2, page 55
-;; =================================
+;; Example 5 - Random Scribble
+;; Taken from Section 3.2, p55
 
 ;; void setup() {
 ;;   size(500, 100);
@@ -36,7 +36,6 @@
   (+ border-y (rand (- (height) (* 2 border-y)))))
 
 (defn setup []
-  (size 500 100)
   (background 255)
   (stroke-weight 5)
   (smooth)
@@ -53,10 +52,7 @@
     (dorun (map #(apply line %) line-args))))
 
 
-(defapplet example
+(applet
   :title "Random Scribble"
   :setup setup
   :size [500 100])
-
-(run example :interactive)
-;;(stop example)

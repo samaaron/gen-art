@@ -1,8 +1,9 @@
 (ns gen-art.sphere
-  (:use [rosado.processing]
-        [rosado.processing.applet]))
+  (:use [processing.core]
+        [processing.core.applet]))
 
-;; Section 5.3.1, p94
+;; Example 26 - 3D Sphere
+;; Taken from Section 5.3.1, p94
 
 ;; import processing.opengl.*;
 
@@ -15,7 +16,6 @@
 ;; }
 
 (defn setup []
-  (size 500 300 OPENGL)
   (smooth)
   (sphere-detail 100)
   (translate (/ (width) 2) (/ (height) 2) 0)
@@ -24,6 +24,4 @@
 (defapplet example
   :title "3D Sphere"
   :setup setup
-  :size [500 300])
-
-(run example :interactive)
+  :size [500 300 OPENGL])

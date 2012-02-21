@@ -1,9 +1,10 @@
 (ns gen-art.noise-perspective
-  (:use [rosado.processing]
-        [rosado.processing.applet]
+  (:use [processing.core]
+        [processing.core.applet]
         [gen-art.util :only [mul-add indexed-range-incl steps seq->stream]]))
 
-;; Listing 5.5, p95
+;; Example 27 - 2D Noise from a 3D Perspectivea
+;; Taken from Listing 5.5, p95
 
 ;; import processing.opengl.*;
 
@@ -48,17 +49,6 @@
 ;;   popMatrix();
 ;; }
 
-;; Section 5.3.1, p94
-
-;; import processing.opengl.*;
-
-;; void setup() {
-;;   size(500, 300, OPENGL);
-;;   sphereDetail(40);
-
-;;   translate(width/2, height/2.0);
-;;   sphere(100);
-;; }
 
 (defn draw-point
   [x y noise-factor]
@@ -74,17 +64,16 @@
 (defn draw []
   (background 0)
   (let [[x-shift y-shift] ((state :shifts))]
-    (dorun
-     (for [[x-idx x] (indexed-range-incl 0 (width) 15)
-           [y-idx y] (indexed-range-incl 0 (height) 15)]
-       (let [y-noise (mul-add y-idx 0.1 y-shift)
-             x-noise (mul-add x-idx 0.1 x-shift)]
-         (draw-point x y (noise x-noise y-noise)))))))
+    (doseq [[x-idx x] (indexed-range-incl 0 (width) 5)
+            [y-idx y] (indexed-range-incl 0 (height) 5)]
+      (let [y-noise (mul-add y-idx 0.1 y-shift)
+            x-noise (mul-add x-idx 0.1 x-shift)]
+        (draw-point x y (noise x-noise y-noise))))))
 
 (defn setup []
-  (size 500 300 OPENGL)
   (smooth)
   (background 0)
+
   (sphere-detail 8)
   (no-stroke)
   (let [x-shifts (steps (random 10) 0.01)
@@ -92,10 +81,8 @@
         shifts   (map list x-shifts y-shifts)]
     (set-state! :shifts (seq->stream shifts))))
 
-(defapplet example
+(applet
   :title "2D Noise from a 3D Perspective"
   :setup setup
   :draw draw
-  :size [500 300])
-
-(run example :interactive)
+  :size [500 300 OPENGL])

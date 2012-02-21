@@ -1,9 +1,10 @@
 (ns gen-art.fluffy-clouds-noise-grid
-  (:use [rosado.processing]
-        [rosado.processing.applet]
+  (:use [processing.core]
+        [processing.core.applet]
         [gen-art.util :only [range-incl mul-add]]))
 
-;; Section 5.1.2 (figure 5.4) p88
+;; Example 23 - Fluffy Clouds 2D Noise Grid
+;; Taken from Section 5.1.2, p88 (figure 5.4)
 
 ;; float xstart, xnoise, ynoise;
 
@@ -60,14 +61,11 @@
        (draw-point x y (noise x-noise y-noise))))))
 
 (defn setup []
-  (size 300 300)
   (smooth)
   (background 0)
   (draw-all-points (random 10) (random 10)))
 
-(defapplet example
+(applet
   :title "Fluffy Clouds 2D Noise Grid"
   :setup setup
   :size [300 300])
-
-(run example :interactive)

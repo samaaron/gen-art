@@ -1,9 +1,10 @@
 (ns gen-art.warped-circle-from-fading-opposing-lines
-    (:use [rosado.processing]
-          [rosado.processing.applet]
-          [gen-art.util :only [range-incl mul-add]]))
+    (:use [processing.core]
+          [processing.core.applet]
+          [gen-art.util :only [range-incl mul-add steps]]))
 
-;; Section 4.2, page 79 (Figure 4.13)
+;; Example 18 - Warped Circle from Fading Opposing Lines
+;; Taken from Section 4.2, p79 (Figure 4.13)
 
 ;; void setup() {
 ;;   size(500,300);
@@ -38,7 +39,6 @@
 ;; }
 
 (defn setup []
-  (size 500 300)
   (background 255)
   (stroke-weight 0.5)
   (smooth)
@@ -49,22 +49,19 @@
         rads      (map radians angles)
         opp-rads  (map + rads (repeat PI))
         colours   (cycle (range-incl 255 0 -1))
-        rad-noise (range (random 10) Float/POSITIVE_INFINITY 0.005)
+        rad-noise (steps (random 10) 0.005)
         radii     (map noise rad-noise)
         radii     (mul-add radii 400 1)
-        x1s       (map (fn [radius rad] (+ cent-x (* radius (cos rad)))) radii rads)
-        y1s       (map (fn [radius rad] (+ cent-y (* radius (sin rad)))) radii rads)
-        x2s       (map (fn [radius rad] (+ cent-x (* radius (cos rad)))) radii opp-rads)
-        y2s       (map (fn [radius rad] (+ cent-y (* radius (sin rad)))) radii opp-rads)]
+        x1s       (map (fn [radius rad] (mul-add (cos rad) radius cent-x)) radii rads)
+        y1s       (map (fn [radius rad] (mul-add (sin rad) radius cent-y)) radii rads)
+        x2s       (map (fn [radius rad] (mul-add (cos rad) radius cent-x)) radii opp-rads)
+        y2s       (map (fn [radius rad] (mul-add (sin rad) radius cent-y)) radii opp-rads)]
     (doall (map (fn [x1 y1 x2 y2 col]
                   (stroke col)
                   (line x1 y1 x2 y2))
                 x1s y1s x2s y2s colours))))
 
-(defapplet example
+(applet
   :title "Warped Circle from Fading Opposing Lines"
   :setup setup
   :size [500 300])
-
-(run example :interactive)
-;;(stop example)

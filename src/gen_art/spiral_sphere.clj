@@ -1,9 +1,10 @@
 (ns gen-art.spiral-sphere
-  (:use [rosado.processing]
-        [rosado.processing.applet]
+  (:use [processing.core]
+        [processing.core.applet]
         [gen-art.util :only [line-join-points mul-add]]))
 
-;; Listing 5.7, p100
+;; Example 29 - Spiral Sphere
+;; Taken from Listing 5.7, p100
 
 ;; import processing.opengl.*;
 
@@ -51,9 +52,8 @@
 (def radius 100)
 
 (defn setup []
-  (size 500 300 OPENGL)
   (background 255)
-  (stroke 80))
+  (stroke 00))
 
 (defn draw []
   (background 255)
@@ -64,8 +64,8 @@
                     (let [s        (* t 18)
                           radian-s (radians s)
                           radian-t (radians t)
-                          x (* radius (cos radian-s) (sin radian-t))
-                          y (* radius (sin radian-s) (sin radian-t))
+                          x (* radius  (cos radian-s) (sin radian-t))
+                          y (* radius  (sin radian-s) (sin radian-t))
                           z (* radius (cos radian-t))]
                       [x y z]))]
     (dorun
@@ -76,6 +76,4 @@
   :title "Spiral Sphere"
   :setup setup
   :draw draw
-  :size [500 300])
-
-(run example :interactive)
+  :size [500 300 OPENGL])

@@ -1,9 +1,10 @@
 (ns gen-art.wave-clock
-  (:use [rosado.processing]
-        [rosado.processing.applet]
+  (:use [processing.core]
+        [processing.core.applet]
         [gen-art.util :only [steps mul-add cycle-between seq->stream]]))
 
-;; Listing 4.6, p79
+;; Example 19 - Wave Clock
+;; Taken from Listing 4.6, p79
 
 ;; float _angnoise, _radiusnoise;
 ;; float _xnoise, _ynoise;
@@ -86,7 +87,6 @@
     (seq->stream stroke-cols)))
 
 (defn setup []
-  (size 500 300)
   (smooth)
   (frame-rate 30)
   (background 255)
@@ -103,11 +103,8 @@
     (stroke col 60)
     (apply line line-args)))
 
-(defapplet example
+(applet
   :title "Wave Clock"
   :setup setup
   :draw draw
   :size [500 300])
-
-(run example :interactive)
-;;(stop example)
