@@ -39,7 +39,7 @@ Key examples from the book Generative Art by Matt Pearson translated from Proces
 
 ## Requirements
 
-Currently requires the `docstrings` branch of clj-processing available at https://github.com/samaaron/clj-processing/tree/docstrings
+Currently requires the `hacking` branch of clj-processing available at https://github.com/samaaron/clj-processing/tree/hacking
 
 ## License
 
